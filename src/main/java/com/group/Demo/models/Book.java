@@ -1,14 +1,20 @@
 package com.group.Demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
+    private String name;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "book")
     private  Student student;
 }
