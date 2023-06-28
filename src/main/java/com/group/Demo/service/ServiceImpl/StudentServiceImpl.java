@@ -29,4 +29,23 @@ public class StudentServiceImpl implements StudentService {
         Student student=studentRepository.findById(id).orElse(null);
         return  student;
     }
+
+    @Override
+    public Student updateStudent(Long id, Student student) {
+       Student _student=studentRepository.findById(id).orElse(null);
+       if(student!=null){
+           _student.setBook(student.getBook());
+           _student.setName(student.getName());
+           _student.setRoll(student.getRoll());
+           studentRepository.save(_student);
+           return student;
+       }else{
+           return  null;
+       }
+    }
+
+    @Override
+    public void deleteStudentById(Long id) {
+          studentRepository.deleteById(id);
+    }
 }
